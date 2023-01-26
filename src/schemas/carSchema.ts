@@ -6,3 +6,7 @@ export const carSchema = joi.object({
   year: joi.number().required(),
   color: joi.string().required()
 });
+
+export const licensePlateSchema = joi.object({
+  licensePlate: joi.string().length(7).required(),
+})

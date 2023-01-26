@@ -57,11 +57,27 @@ async function deleteCar(req: Request, res: Response) {
   }
 }
 
+async function updateLicensePlate(req: Request, res: Response){
+  const { carId:id } = req.params;
+  const {licensePlate}  = req.body;
+
+  try {
+    const result = await carService.updateLicensePlate(licensePlate,Number(id));
+    res.status(httpStatus.OK).send(result);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  return;
+}
+
 const carController = {
   getAllCars,
   getSpecificCar,
   createCar,
-  deleteCar
+  deleteCar,
+  updateLicensePlate
 }
 
 export default carController;
